@@ -1,5 +1,4 @@
 # frontend-qa-android
-test
 This the forntend-qa automation for android App. It is using appium as the server framework, webdriverIO for user interaction and jest as the test runner.
 Following thigns needs to be installed on the system locally.
 
