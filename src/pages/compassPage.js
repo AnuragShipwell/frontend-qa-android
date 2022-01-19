@@ -378,7 +378,7 @@ class CompassPage{
     const NTaddLocationEventoNTimeline= await this.NTaddLocationEventoNTimeline()
     const NTaddLocationZipCode= await this.NTaddLocationZipCode()
     const NTaddLocationDescription= await this.NTaddLocationDescription()
-    //const scrollForward= await this.scrollForward()
+    const scrollUp= await this.scrollUp()
     const saveButton= await this.saveButton()
     const NTsendEmail= await this.NTsendEmail()
     const NTsendEmailCarrierText= await this.NTsendEmailCarrierText()
@@ -468,9 +468,14 @@ class CompassPage{
     }
 
     //Verifying Late pickup
-    while(await latePickupButton.isDisplayed()==false){
-        const scrollDown= await this.scrollDown();
+    if (await latePickupButton.isDisplayed()==false){
+        const scrollUp= await this.scrollUp()
+        await this.driver.pause(1000)
+        while(await latePickupButton.isDisplayed()==false){
+            const scrollDown= await this.scrollDown();
+        }
     }
+    
     await latePickupButton.waitForDisplayed({ timeout: 8000 })
     await latePickupButton.waitForEnabled({ timeout: 8000 })
     await latePickupButton.touchAction('tap')
@@ -575,8 +580,12 @@ class CompassPage{
     }
 
     //Verifying Late delivery
-    while(await lateDeliveryButton.isDisplayed()==false){
-        const scrollDown= await this.scrollDown();
+    if (await lateDeliveryButton.isDisplayed()==false){
+        const scrollUp= await this.scrollUp()
+        await this.driver.pause(1000)
+        while(await lateDeliveryButton.isDisplayed()==false){
+            const scrollDown= await this.scrollDown();
+        }
     }
     await lateDeliveryButton.waitForDisplayed({ timeout: 8000 })
     await lateDeliveryButton.waitForEnabled({ timeout: 8000 })
@@ -698,8 +707,12 @@ class CompassPage{
     }
 
     //Verifying Running Late
-    while(await runningLateButton.isDisplayed()==false){
-        const scrollDown= await this.scrollDown();
+    if (await runningLateButton.isDisplayed()==false){
+        const scrollUp= await this.scrollUp()
+        await this.driver.pause(1000)
+        while(await runningLateButton.isDisplayed()==false){
+            const scrollDown= await this.scrollDown();
+        }
     }
     await runningLateButton.waitForDisplayed({ timeout: 8000 })
     await runningLateButton.waitForEnabled({ timeout: 8000 })
@@ -777,8 +790,12 @@ class CompassPage{
     }
 
     //Verifying Not Tracking
-    while(await notTtracking.isDisplayed()==false){
-        const scrollDown= await this.scrollDown();
+    if (await notTtracking.isDisplayed()==false){
+        const scrollUp= await this.scrollUp()
+        await this.driver.pause(1000)
+        while(await notTtracking.isDisplayed()==false){
+            const scrollDown= await this.scrollDown();
+        }
     }
     await notTtracking.waitForDisplayed({ timeout: 8000 })
     await notTtracking.waitForEnabled({ timeout: 8000 })
@@ -893,8 +910,12 @@ class CompassPage{
         }
 
     //Verifying Carrier Not Assigned
-    while(await carrierNotAssignedButton.isDisplayed()==false){
-        const scrollDown= await this.scrollDown();
+    if (await carrierNotAssignedButton.isDisplayed()==false){
+        const scrollUp= await this.scrollUp()
+        await this.driver.pause(1000)
+        while(await carrierNotAssignedButton.isDisplayed()==false){
+            const scrollDown= await this.scrollDown();
+        }
     }
     await carrierNotAssignedButton.waitForDisplayed({ timeout: 8000 })
     await carrierNotAssignedButton.waitForEnabled({ timeout: 8000 })
@@ -1085,8 +1106,12 @@ class CompassPage{
     }
 
     //Verify Carrier Status
-    while(await carrierStatusButton.isDisplayed()==false){
-        const scrollDown= await this.scrollDown();
+    if (await carrierStatusButton.isDisplayed()==false){
+        const scrollUp= await this.scrollUp()
+        await this.driver.pause(1000)
+        while(await carrierStatusButton.isDisplayed()==false){
+            const scrollDown= await this.scrollDown();
+        }
     }
     await carrierStatusButton.waitForDisplayed({ timeout: 15000 })
     await carrierStatusButton.waitForEnabled({ timeout: 15000 })
@@ -1121,8 +1146,12 @@ class CompassPage{
         console.log(error)
     }
     //Verify watched shipment
-    while(await wathedShipmentButton.isDisplayed()==false){
-        const scrollDown= await this.scrollDown();
+    if (await wathedShipmentButton.isDisplayed()==false){
+        const scrollUp= await this.scrollUp()
+        await this.driver.pause(1000)
+        while(await wathedShipmentButton.isDisplayed()==false){
+            const scrollDown= await this.scrollDown();
+        }
     }
     await wathedShipmentButton.waitForDisplayed({ timeout: 15000 })
     await wathedShipmentButton.waitForEnabled({ timeout: 15000 })
