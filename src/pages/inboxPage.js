@@ -45,13 +45,10 @@ class InboxPage{
         await kebabButton.touchAction('tap')
     }
     await inboxButton.waitForDisplayed({ timeout: 5000 })
-    await inboxButton.waitForEnabled({ timeout: 5000 })
     await inboxButton.touchAction('tap')
 
     await inboxMessagesCapsButton.waitForDisplayed({ timeout: 5000 })
-    await inboxMessagesCapsButton.waitForEnabled({ timeout: 5000 })
     await inboxNotificationsCapsButton.waitForDisplayed({ timeout: 5000 })
-    await inboxNotificationsCapsButton.waitForEnabled({ timeout: 5000 })
     
     //Messages view
     await inboxMessagesCapsButton.touchAction('tap')
@@ -60,6 +57,7 @@ class InboxPage{
     await kebabButton.touchAction("tap")
 
     //Notification view
+    await inboxNotificationsCapsButton.waitForDisplayed({ timeout: 5000 })
     await inboxNotificationsCapsButton.touchAction('tap')
     await inboxNotificationButton.waitForDisplayed({ timeout: 5000 })
     
@@ -70,7 +68,6 @@ class InboxPage{
     ])
     await this.driver.pause(2000)
     if (await notificationReadButton.isDisplayed()){
-        await notificationReadButton.waitForDisplayed({ timeout: 5000 })
         await notificationReadButton.touchAction('tap')
     }
     else{
@@ -85,7 +82,6 @@ class InboxPage{
     ])
     await this.driver.pause(2000)
     if (await notificationUnReadButton.isDisplayed() ){
-        await notificationUnReadButton.waitForDisplayed({timeout: 5000})
         await notificationUnReadButton.touchAction('tap')
     }
     else{

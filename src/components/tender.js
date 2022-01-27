@@ -87,9 +87,8 @@ class TenderComponent{
 
 
 
-        await this.driver.pause(3000)
+        await this.driver.pause(2000)
         await lbTenderedButton.waitForDisplayed({ timeout: 5000 })
-        await lbTenderedButton.waitForEnabled({ timeout: 5000 })
         await lbTenderedButton.touchAction('tap')
         if (await lbTenderLoadCard.isDisplayed()==true){
             await lbTenderedLoadID.waitForDisplayed({ timeout: 5000 })
@@ -115,18 +114,14 @@ class TenderComponent{
 
             await chatMessageButton.touchAction('tap')
             await backButton.waitForDisplayed({ timeout: 5000 })
-            await backButton.waitForEnabled({ timeout: 5000 })
             await backButton.touchAction('tap')
 
             await lbTenderedLoadAceeptButton.waitForDisplayed({ timeout: 5000 })
-            await lbTenderedLoadAceeptButton.waitForEnabled({ timeout: 5000 })
             await lbTenderedLoadAceeptButton.touchAction('tap')
 
             await lbTenderedLoadConfirmationText.waitForDisplayed({ timeout: 5000 })
-            await lbTenderedLoadConfirmationText.waitForEnabled({ timeout: 5000 })
         
             await lbTenderedLoadConfirmationCancelButton.waitForDisplayed({ timeout: 5000 })
-            await lbTenderedLoadConfirmationCancelButton.waitForEnabled({ timeout: 5000 })
 
             await lbTenderedLoadConfirmationAcceptButton.waitForDisplayed({ timeout: 5000 })
             

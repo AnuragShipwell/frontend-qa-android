@@ -27,16 +27,15 @@ async login(email, password){
     const passwordInput= await this.passwordInput()
     const signInButton= await this.signInButton()
     
-
+    await IhaveShipwellAccountButton.waitForDisplayed({timeout:5000})
     await IhaveShipwellAccountButton.touchAction("tap");
     await emailButton.waitForDisplayed({timeout:5000})
-    await emailButton.touchAction("tap");
     await emailButton.setValue(email)
 
-    await passwordInput.touchAction("tap");
+    await passwordInput.waitForDisplayed({timeout:5000})
     await passwordInput.setValue(password)
 
-    const signInButtonScroll= await this.signInButtonScroll()
+    await this.signInButtonScroll()
     await signInButton.touchAction("tap");
 }
 }

@@ -29,6 +29,8 @@ class OnboardingPage{
     const onboardingDispatchView = await this.onboardingDispatchView()
     const getStartedButton = await this.getStartedButton()
 
+    await this.driver.pause(2000)
+    
     await onboardingLoadView.waitForDisplayed({timeout:5000})
     await nextButton.touchAction('tap')
     

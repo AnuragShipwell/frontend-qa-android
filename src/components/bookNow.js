@@ -66,6 +66,7 @@ class BookNowComponent{
         const backButton= await this.backButton()
         const searchFieldClearButton= await this.searchFieldClearButton()
         const lbSearchButton= await this.lbSearchButton()
+        await this.driver.pause(2000)
 
         if (await lbOpenButton.isDisplayed()){
             await lbOpenButton.touchAction('tap')
@@ -79,27 +80,16 @@ class BookNowComponent{
         }
         await lbOpenBookNow.touchAction('tap')
         await lbOpenBookNowToAddress.waitForDisplayed({ timeout: 5000 })
-        await lbOpenBookNowToAddress.waitForEnabled({ timeout: 5000 })
         await lbOpenBookNowPickUpPlannedFor.waitForDisplayed({ timeout: 5000 })
-        await lbOpenBookNowPickUpPlannedFor.waitForEnabled({ timeout: 5000 })
         await lbOpenBookNowFromAddress.waitForDisplayed({ timeout: 5000 })
-        await lbOpenBookNowFromAddress.waitForEnabled({ timeout: 5000 })
         await lbOpenBookNowdropOffPlannedFor.waitForDisplayed({ timeout: 5000 })
-        await lbOpenBookNowdropOffPlannedFor.waitForEnabled({ timeout: 5000 })
         await lbOpenBookNowMode.waitForDisplayed({ timeout: 5000 })
-        await lbOpenBookNowMode.waitForEnabled({ timeout: 5000 })
         await lbOpenBookNowEquipment.waitForDisplayed({ timeout: 5000 })
-        await lbOpenBookNowEquipment.waitForEnabled({ timeout: 5000 })
         await lbOpenBookNowNumStops.waitForDisplayed({ timeout: 5000 })
-        await lbOpenBookNowNumStops.waitForEnabled({ timeout: 5000 })
         await lbOpenBookNowMiles.waitForDisplayed({ timeout: 5000 })
-        await lbOpenBookNowMiles.waitForEnabled({ timeout: 5000 })
         await lbOpenBookNowWeight.waitForDisplayed({ timeout: 5000 })
-        await lbOpenBookNowWeight.waitForEnabled({ timeout: 5000 })
         await lbOpenBookNowDetailsBookNowButton.waitForDisplayed({ timeout: 5000 })
-        await lbOpenBookNowDetailsBookNowButton.waitForEnabled({ timeout: 5000 })
         await backButton.waitForDisplayed({ timeout: 5000 })
-        await backButton.waitForEnabled({ timeout: 5000 })
         await backButton.touchAction('tap')
 
     }

@@ -50,18 +50,15 @@ class PlaceBidComponent{
 
  //Testing Placing multiple Bid and Deleting the bids.
  await lbBiddingButton.waitForDisplayed({ timeout: 5000 })
- await lbBiddingButton.waitForEnabled({ timeout: 5000 })
  await lbBiddingButton.touchAction('tap')
  
  await searchFieldClearButton.waitForDisplayed({ timeout: 5000 })
- await searchFieldClearButton.waitForEnabled({ timeout: 5000 })
  await searchFieldClearButton.touchAction('tap')
  
  //await lbSearchButton.touchAction('tap')
  await lbSearchButton.setValue('LIDT2CGWP') //'LIDT2CGWP'
  
  await lbPlaceBidButton.waitForDisplayed({ timeout: 5000 })
- await lbPlaceBidButton.waitForEnabled({ timeout: 5000 })
  await lbPlaceBidButton.touchAction('tap')
  
  await lbPlaceBidText.waitForDisplayed({ timeout: 5000 })
@@ -70,28 +67,24 @@ class PlaceBidComponent{
  await backButton.touchAction('tap')
 
  await lbBiddingSearchedLoadID.waitForDisplayed({ timeout: 5000 })
- await lbBiddingSearchedLoadID.waitForEnabled({ timeout: 5000 })
  await lbBiddingSearchedLoadID.touchAction('tap')
  
  
  await lbLoadIdTitleBarText.waitForDisplayed({ timeout: 5000 })
- await lbPlaceBidButton.waitForEnabled({ timeout: 5000 })
+ await lbPlaceBidButton.waitForDisplayed({ timeout: 5000 })
  await lbPlaceBidButton.touchAction('tap')
 
  await lbPlaceBidText.waitForDisplayed({ timeout: 5000 })
  
  await lbEnterYourBidInput.waitForDisplayed({ timeout: 5000 })
- await lbEnterYourBidInput.waitForEnabled({ timeout: 5000 })
  await lbEnterYourBidInput.touchAction('tap')
  await lbEnterYourBidInput.setValue('234')
 
  await lbBidSubmitButton.waitForDisplayed({ timeout: 5000 })
- await lbBidSubmitButton.waitForEnabled({ timeout: 5000 })
  await lbBidSubmitButton.touchAction('tap')
  
  await this.driver.pause(3000)
  await backButton.waitForDisplayed({ timeout: 5000 })
- await backButton.waitForEnabled({ timeout: 5000 })
  await backButton.touchAction('tap')
  }
 }

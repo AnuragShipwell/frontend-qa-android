@@ -57,11 +57,14 @@ class LoadBoardPage{
     const lbBidHistoryExpandable= await this.lbBidHistoryExpandable()
     const compassButton= await this.compassButton()
     
+    await this.driver.pause(2000)
+
     if (await compassButton.isDisplayed()){
         await kebabButton.touchAction('tap')
         await loadBoardButton.touchAction('tap')
         await lbOpenButton.touchAction('tap')
         await lbSearchButton.waitForDisplayed({ timeout: 10000 })
+        await lbSearchButton.waitForEnabled({ timeout: 10000 })
         await lbSearchButton.setValue('LIDA4GF4M')
 
     }

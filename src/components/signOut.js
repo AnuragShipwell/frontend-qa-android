@@ -25,7 +25,7 @@ const signOutButton=await this.signOutButton()
 const cancelCapsButton=await this.cancelCapsButton()
 const signOutCapsButton=await this.signOutCapsButton()
 const welcomeToShipwellButton= await this.welcomeToShipwellButton()
-
+await this.driver.pause(2000)
 await signOutButton.waitForDisplayed({ timeout: 5000 })
 await signOutButton.touchAction('tap')
 await cancelCapsButton.waitForDisplayed({ timeout: 5000 })

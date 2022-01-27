@@ -76,6 +76,8 @@ class ShipmentPage{
     const shipLineItem1Expandable=  await this.shipLineItem1Expandable()
     const shipAssignmentExpandable=  await this.shipAssignmentExpandable()
     const shipNotesNonExpandable=   await this.shipNotesNonExpandable()
+    
+    await this.driver.pause(2000)
 
     if (await kebabButton.isDisplayed()){
         await kebabButton.touchAction("tap")
@@ -88,7 +90,7 @@ class ShipmentPage{
     await shipActiveButton.touchAction('tap')
     await shipActiveButton.waitForDisplayed({ timeout: 10000 })
     await shipDeliveredButton.waitForDisplayed({ timeout: 10000 })
-
+    await shipSearchShipments.waitForEnabled({ timeout: 10000 })
     await shipSearchShipments.setValue('5RUCFH')
 
     await shipShipmentIDText.waitForDisplayed({ timeout: 10000 })

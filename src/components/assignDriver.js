@@ -54,32 +54,23 @@ class AssignDriverComponent{
 
         
         await shipmentActiveAssignDriver.waitForDisplayed({ timeout: 5000 })
-        await shipmentActiveAssignDriver.waitForEnabled({ timeout: 5000 })
         await shipmentActiveAssignDriver.touchAction('tap')
 
         await shipmentActiveAssignTitle.waitForDisplayed({ timeout: 5000 })
-        await shipmentActiveAssignTitle.waitForEnabled({ timeout: 5000 })
 
         await shipmentActiveCountryCode.waitForDisplayed({ timeout: 5000 })
-        await shipmentActiveCountryCode.waitForEnabled({ timeout: 5000 })
 
         await shipmentActivePhoneNumber.waitForDisplayed({ timeout: 5000 })
-        await shipmentActivePhoneNumber.waitForEnabled({ timeout: 5000 })
 
         await shipmentActiveSelfAssignDriver.waitForDisplayed({ timeout: 5000 })
-        await shipmentActiveSelfAssignDriver.waitForEnabled({ timeout: 5000 })
 
         await shipmentActiveSelectPowerUnit.waitForDisplayed({ timeout: 5000 })
-        await shipmentActiveSelectPowerUnit.waitForEnabled({ timeout: 5000 })
 
         await shipmentActiveCancelButton.waitForDisplayed({ timeout: 5000 })
-        await shipmentActiveCancelButton.waitForEnabled({ timeout: 5000 })
 
         await shipmentActiveAssignButton.waitForDisplayed({ timeout: 5000 })
-        await shipmentActiveAssignButton.waitForEnabled({ timeout: 5000 })
 
         await backButton.waitForDisplayed({ timeout: 5000 })
-        await backButton.waitForEnabled({ timeout: 5000 })
         await backButton.touchAction('tap')
 }
 }

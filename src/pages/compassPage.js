@@ -440,26 +440,23 @@ class CompassPage{
     const noActionAvailableButton= await this.noActionAvailableButton()
 
     await compassButton.waitForDisplayed({ timeout: 15000 })
-    await this.driver.pause(4000)
+    //await this.driver.pause(4000)
+
     //Verifying OPEN ALERT view
     await allOpenButton.waitForDisplayed({ timeout: 30000 })
     await allOpenButton.touchAction('tap')
     await allOpenButton.waitForDisplayed({ timeout: 15000 })
     try {
     await mapViewButton.waitForDisplayed({ timeout: 15000 })
-    await mapViewButton.waitForEnabled({ timeout: 15000 })
     await mapViewButton.touchAction('tap')
     await googleMapView.waitForDisplayed({ timeout: 8000 })
-    await googleMapView.waitForEnabled({ timeout: 8000 })
 
     await alertTilesButton.waitForDisplayed({ timeout: 15000 })
-    await alertTilesButton.waitForEnabled({ timeout: 15000 })
     await alertTilesButton.touchAction('tap')
 
     await compassShipmentAlertCard.waitForDisplayed({timeout: 15000})
 
     await backButton.waitForDisplayed({ timeout: 15000 })
-    await backButton.waitForEnabled({ timeout: 15000 })
     await backButton.touchAction('tap')
     await this.driver.pause(3000)
     }
@@ -477,53 +474,47 @@ class CompassPage{
     }
     
     await latePickupButton.waitForDisplayed({ timeout: 8000 })
-    await latePickupButton.waitForEnabled({ timeout: 8000 })
     await latePickupButton.touchAction('tap')
     await latePickupButton.waitForDisplayed({ timeout: 15000 })
     try{
     await alertTilesButton.waitForDisplayed({ timeout: 15000 })
     await mapViewButton.waitForDisplayed({ timeout: 15000 })
-    await mapViewButton.waitForEnabled({ timeout: 15000 })
     await mapViewButton.touchAction('tap')
     await googleMapView.waitForDisplayed({ timeout: 8000 })
-    await googleMapView.waitForEnabled({ timeout: 8000 })
     
     await alertTilesButton.waitForDisplayed({ timeout: 15000 })
-    await alertTilesButton.waitForEnabled({ timeout: 15000 })
     await alertTilesButton.touchAction('tap')
 
     await compassShipmentAlertCard.waitForDisplayed({timeout: 15000})
     await compassShipmentAlertCard.touchAction('tap')
    
     await actionButton.waitForDisplayed({timeout: 15000})
-    await actionButton.waitForEnabled({ timeout: 15000 })
     await actionButton.touchAction('tap')
+    
 
-    if(await noActionAvailableButton.isDisplayed()==true){
+    if(await noActionAvailableButton.isDisplayed()){
         await noActionAvailableButton.touchAction('tap')
         await backButton.waitForDisplayed({ timeout: 10000 })
         await backButton.touchAction('tap')
     }
     //Edit appoinment Time
     else{
-        if (await editAppointmentTime.isDisplayed()==true){
-            await editAppointmentTime.waitForDisplayed({ timeout: 15000 })
+        if (await editAppointmentTime.isDisplayed()){
             await editAppointmentTime.touchAction('tap')
             await editTimeStop1Text.waitForDisplayed({ timeout: 15000 })
-            for (let i=0; i<2; i++){
-                const scrollDown= await this.scrollDown();
-                if(await saveButton.isDisplayed()==true){
+            for (let i=0; i<10; i++){
+                await this.scrollDown();
+                if(await saveButton.isDisplayed()){
                     break;
                 }
             }
-            await saveButton.waitForDisplayed({timeout: 15000})
             await saveButton.touchAction('tap')
-            await this.driver.pause(2000)
+            await this.driver.pause(1000)
             if (await closeButton.isDisplayed()==true){
                 await closeButton.touchAction('tap')
                 await this.driver.pause(1000)
                 await backButton.waitForDisplayed({ timeout: 15000 })
-                await backButton.waitForEnabled({ timeout: 15000 })
+                await backButton.touchAction('tap')
             }
             else if (await saveButton.isDisplayed()==true){
                 await cancelButton.touchAction('tap')
@@ -533,49 +524,31 @@ class CompassPage{
     //Mark stop as complete
         await actionButton.waitForDisplayed({timeout: 25000})
         await actionButton.touchAction('tap')
+        await this.driver.pause(1000)
         if (await markStopComplete.isDisplayed()==true){
-            await markStopComplete.waitForDisplayed({ timeout: 15000 })
             await markStopComplete.touchAction('tap')
-            await saveButton.waitForDisplayed({ timeout: 15000 })
-            await saveButton.waitForEnabled({ timeout: 15000 })
-            await cancelButton.waitForDisplayed({ timeout: 15000 })
-            await cancelButton.waitForEnabled({ timeout: 15000 })
-            await saveButton.touchAction('tap')
-            if (await closeButton.isDisplayed()==true){
-                await closeButton.touchAction('tap')
-                await this.driver.pause(1000)
-                if ((await backButton.isDisplayed()==true)){
-                    await backButton.touchAction('tap')
-                }
-                
-            }
-            else if (await cancelButton.isDisplayed()==true){
-                await cancelButton.touchAction('tap')
-            }
-            }
-        await this.driver.pause(3000)
         }
-        if (await LDmarkAsDeliveredButton.isDisplayed()==true){
-            await LDmarkAsDeliveredButton.waitForDisplayed({ timeout: 15000 })
+        else if (await LDmarkAsDeliveredButton.isDisplayed()==true){
             await LDmarkAsDeliveredButton.touchAction('tap')
-            await saveButton.waitForDisplayed({ timeout: 15000 })
-            await saveButton.touchAction('tap')
-            if (await closeButton.isDisplayed()==true){
-                await closeButton.touchAction('tap')
-                await this.driver.pause(1000)
-                if ((await backButton.isDisplayed()==true)){
-                    await backButton.touchAction('tap')
-                }
-            }
-            else if (await cancelButton.isDisplayed()==true){
-                await cancelButton.touchAction('tap')
+        }  
+        await saveButton.waitForDisplayed({ timeout: 15000 })
+        await saveButton.touchAction('tap')
+        await this.driver.pause(2000)
+        if (await closeButton.isDisplayed()==true){
+            await closeButton.touchAction('tap')
+            await this.driver.pause(1000)
+            if ((await backButton.isDisplayed()==true)){
+                await backButton.touchAction('tap')
             }
         }
+        else if (await cancelButton.isDisplayed()==true){
+                await cancelButton.touchAction('tap')
+        }
+    }
         await backButton.waitForDisplayed({ timeout: 30000 })
-        await backButton.waitForEnabled({ timeout: 30000 })
         await backButton.touchAction('tap')
         await this.driver.pause(3000)
-    }   
+}  
     catch (error){
     }
 
@@ -588,114 +561,83 @@ class CompassPage{
         }
     }
     await lateDeliveryButton.waitForDisplayed({ timeout: 8000 })
-    await lateDeliveryButton.waitForEnabled({ timeout: 8000 })
     await lateDeliveryButton.touchAction('tap')
     await lateDeliveryButton.waitForDisplayed({ timeout: 15000 })
     try{
     await alertTilesButton.waitForDisplayed({ timeout: 3000 })
     await mapViewButton.waitForDisplayed({ timeout: 15000 })
-    await mapViewButton.waitForEnabled({ timeout: 15000 })
     await mapViewButton.touchAction('tap')
     await googleMapView.waitForDisplayed({ timeout: 8000 })
-    await googleMapView.waitForEnabled({ timeout: 8000 })
 
     await alertTilesButton.waitForDisplayed({ timeout: 15000 })
-    await alertTilesButton.waitForEnabled({ timeout: 15000 })
     await alertTilesButton.touchAction('tap')
 
     await compassShipmentAlertCard.waitForDisplayed({timeout: 15000})
-    await compassShipmentAlertCard.waitForEnabled({ timeout: 15000 })
     await compassShipmentAlertCard.touchAction('tap')
     await actionCardHeader.waitForDisplayed({timeout: 5000})
-    await actionCardHeader.waitForEnabled({ timeout: 5000 })
     await actionButton.waitForDisplayed({timeout: 5000})
-    await actionButton.waitForEnabled({ timeout: 5000 })
     await actionButton.touchAction('tap')
 
-    if(await noActionAvailableButton.isDisplayed()==true){
+    if(await noActionAvailableButton.isDisplayed()){
         await noActionAvailableButton.touchAction('tap')
         await backButton.waitForDisplayed({ timeout: 10000 })
         await backButton.touchAction('tap')
     }
     else{
     //Edit Delivery Appointment
-    await editAppointmentTime.waitForDisplayed({timeout: 5000})
-    await editAppointmentTime.waitForEnabled({ timeout: 5000 })
-    await editAppointmentTime.touchAction('tap')
-    
-    await editTimeStop1Text.waitForDisplayed({ timeout: 5000 })
-    while(await saveButton.isDisplayed()==false){
-        const scrollDown= await this.scrollDown();
-    }
-    await saveButton.waitForDisplayed({timeout: 5000})
-    await saveButton.waitForEnabled({ timeout: 5000 })
-    await saveButton.touchAction('tap')
-    if(closeButton.isDisplayed()==true){
-        await closeButton.touchAction('tap')
-        await this.driver.pause(1000)
-        if ((await backButton.isDisplayed()==true)){
-            await backButton.touchAction('tap')
+        await editAppointmentTime.waitForDisplayed({timeout: 5000})
+        await editAppointmentTime.touchAction('tap')
+        await editTimeStop1Text.waitForDisplayed({ timeout: 5000 })
+        for (let i=0; i<10; i++){
+            await this.scrollDown();
+            if(await saveButton.isDisplayed()){
+                break;
+            }
         }
-    }
-    else if (await saveButton.isDisplayed()==true){
-        await cancelButton.touchAction('tap')
+        await saveButton.touchAction('tap')
+        await this.driver.pause(1000)
+        if(closeButton.isDisplayed()==true){
+            await closeButton.touchAction('tap')
+            await this.driver.pause(1000)
+            if ((await backButton.isDisplayed()==true)){
+                await backButton.touchAction('tap')
+                }
+        }
+        else if (await cancelButton.isDisplayed()==true){
+            await cancelButton.touchAction('tap')
     }
 
     //Mark as Delivered
+    await this.driver.pause(1000)
     await actionButton.waitForDisplayed({timeout: 5000})
-    await actionButton.waitForEnabled({ timeout: 5000 })
     await actionButton.touchAction('tap')
-
+    await this.driver.pause(1000)
     if (await markStopComplete.isDisplayed()==true){
         await markStopComplete.touchAction('tap')
-        while(await saveButton.isDisplayed()==false){
-            const scrollDown= await this.scrollDown();
         }
-        await saveButton.touchAction('tap')
-        if(closeButton.isDisplayed()==true){
-            await closeButton.touchAction('tap')
-            await this.driver.pause(1000)
-            if ((await backButton.isDisplayed()==true)){
-                await backButton.touchAction('tap')
-            }
-        }
-        else if (await saveButton.isDisplayed()==true){
-            await cancelButton.touchAction('tap')
-        }
-
-    }
     else if(await LDmarkAsDeliveredButton.isDisplayed()==true){
         await LDmarkAsDeliveredButton.touchAction('tap')
-        while(await saveButton.isDisplayed()==false){
-            const scrollDown= await this.scrollDown();
-        }
-        await saveButton.touchAction('tap')
-        if(closeButton.isDisplayed()==true){
-            await closeButton.touchAction('tap')
-            await this.driver.pause(1000)
-            if ((await backButton.isDisplayed()==true)){
-                await backButton.touchAction('tap')
-            }
-        }
-        else if (await saveButton.isDisplayed()==true){
-            await cancelButton.touchAction('tap')
+    }
+    for (let i=0; i<10; i++){
+        await this.scrollDown();
+        if(await saveButton.isDisplayed()){
+            break;
         }
     }
-    else if(await noActionAvailableButton.isDisplayed()==true){
-        await noActionAvailableButton.touchAction('tap')
-        await backButton.waitForDisplayed({ timeout: 10000 })
-        await backButton.touchAction('tap')
-    }
-    /*
-    if (await closeButton.isDisplayed()==true){
-        await closeButton.waitForDisplayed({ timeout: 5000 })
+    await saveButton.touchAction('tap')
+    await this.driver.pause(1000)
+    if(await closeButton.isDisplayed()==true){
         await closeButton.touchAction('tap')
-        await backButton.waitForDisplayed({ timeout: 5000 })
-        await backButton.touchAction('tap')
-        await actionButton.waitForDisplayed({timeout: 5000})
-        await actionButton.waitForEnabled({ timeout: 5000 })
-        await actionButton.touchAction('tap')
-    }*/
+        await this.driver.pause(1000)
+        if ((await backButton.isDisplayed())){
+            await backButton.touchAction('tap')
+        }
+    }
+    else if (await saveButton.isDisplayed()){
+        await cancelButton.touchAction('tap')
+    }
+    
+    
     }
     await this.driver.pause(3000)
     await backButton.waitForDisplayed({ timeout: 10000 })
@@ -715,19 +657,15 @@ class CompassPage{
         }
     }
     await runningLateButton.waitForDisplayed({ timeout: 8000 })
-    await runningLateButton.waitForEnabled({ timeout: 8000 })
     await runningLateButton.touchAction('tap')
     await runningLateButton.waitForDisplayed({timeout: 15000})
     try{
     await alertTilesButton.waitForDisplayed({timeout: 3000})
     await mapViewButton.waitForDisplayed({timeout: 15000})
-    await mapViewButton.waitForEnabled({ timeout: 15000 })
     await mapViewButton.touchAction('tap')
     await googleMapView.waitForDisplayed({ timeout: 8000 })
-    await googleMapView.waitForEnabled({ timeout: 8000 })
     
     await alertTilesButton.waitForDisplayed({timeout: 15000})
-    await alertTilesButton.waitForEnabled({ timeout: 15000 })
     await alertTilesButton.touchAction('tap')
 
     await compassShipmentAlertCard.waitForDisplayed({timeout: 15000})
@@ -737,15 +675,20 @@ class CompassPage{
     await actionButton.touchAction('tap')
 
     //Mark stop complete
-    if (await LDmarkAsDeliveredButton.isdisplayed()==true){
+    if (await LDmarkAsDeliveredButton.isdisplayed()){
         await LDmarkAsDeliveredButton.touchAction('tap')
     }
-    else if (await markStopComplete.isdisplayed()==true){
+    else if (await markStopComplete.isdisplayed()){
         await markStopComplete.touchAction('tap')
     }
-    //await checkinTimeText.waitForDisplayed({ timeout: 15000 })
-    //await checkoutTimeText.waitForDisplayed({ timeout: 15000 })
+    for (let i=0; i<10; i++){
+        await this.scrollDown();
+        if(await saveButton.isDisplayed()){
+            break;
+        }
+    }
     await saveButton.touchAction('tap')
+    await this.driver.pause(1000)
     if (await closeButton.isDisplayed()==true){
         await closeButton.touchAction('tap')
         await this.driver.pause(1000)
@@ -762,12 +705,14 @@ class CompassPage{
     await editAppointmentTime.waitForDisplayed({ timeout: 15000 })
     await editAppointmentTime.touchAction('tap')
     await editTimeStop1Text.waitForDisplayed({ timeout: 15000 })
-    while(await saveButton.isDisplayed()==false){
-        const scrollDown= await this.scrollDown();
-    }
-    await saveButton.waitForDisplayed({timeout: 15000})
+    for (let i=0; i<10; i++){
+        await this.scrollDown();
+        if(await saveButton.isDisplayed()){
+            break;
+        }
+    }   
     await saveButton.touchAction('tap')
-
+    await this.driver.pause(1000)
     if (await closeButton.isDisplayed()==true){
         await closeButton.touchAction('tap')
         await this.driver.pause(1000)
@@ -804,80 +749,56 @@ class CompassPage{
     try{
         await alertTilesButton.waitForDisplayed({timeout: 3000})
         await mapViewButton.waitForDisplayed({timeout: 15000})
-        await mapViewButton.waitForEnabled({ timeout: 15000 })
         await mapViewButton.touchAction('tap')
         await googleMapView.waitForDisplayed({ timeout: 8000 })
-        await googleMapView.waitForEnabled({ timeout: 8000 })
         
         await alertTilesButton.waitForDisplayed({timeout: 15000})
-        await alertTilesButton.waitForEnabled({ timeout: 15000 })
         await alertTilesButton.touchAction('tap')
     
         await compassShipmentAlertCard.waitForDisplayed({timeout: 15000})
-        await compassShipmentAlertCard.waitForEnabled({ timeout: 15000 })
         await compassShipmentAlertCard.touchAction('tap')
         await NTdriverButton.waitForDisplayed({timeout: 15000})
-        await NTdriverButton.waitForEnabled({ timeout: 15000 })
         await NTdriverButton.touchAction('tap')
         
         await NTdriverNumberButton.waitForDisplayed({timeout: 15000})
-        await NTdriverNumberButton.waitForEnabled({ timeout: 15000 })
         await NTdriverNumberButton.clearValue()
         await NTdriverNumberButton.setValue("15128064080")
         await NTselectPowerUnit.waitForDisplayed({timeout: 15000})
-        await NTselectPowerUnit.waitForEnabled({ timeout: 15000 })
         await NTtrailer.waitForDisplayed({timeout: 15000})
-        await NTtrailer.waitForEnabled({ timeout: 15000 })
 
         //const NTAssignButtonScroll= await this.NTAssignButtonScroll()
         await NTAssignButton.waitForDisplayed({timeout: 15000})
-        await NTAssignButton.waitForEnabled({ timeout: 15000 })
         await NTAssignButton.touchAction('tap')
 
         await NTshipwellAppTrackingText.waitForDisplayed({timeout: 15000})
-        await NTshipwellAppTrackingText.waitForEnabled({ timeout: 15000 })
         await NTrequestAppInstallButton.waitForDisplayed({timeout: 15000})
-        await NTrequestAppInstallButton.waitForEnabled({ timeout: 15000 })
         await NTstartAppTrackingButton.waitForDisplayed({timeout: 15000})
         await NTstartAppTrackingButton.waitForEnabled({ timeout: 15000 })
-        await NTEquipmentButton.waitForDisplayed({timeout: 15000})
         await NTEquipmentButton.waitForEnabled({ timeout: 15000 })
 
         await actionButton.waitForDisplayed({timeout: 15000})
-        await actionButton.waitForEnabled({ timeout: 15000 })
         await actionButton.touchAction('tap')
         await NTaddLocationEventoNTimeline.waitForDisplayed({timeout: 15000})
-        await NTaddLocationEventoNTimeline.waitForEnabled({ timeout: 15000 })
         await NTaddLocationEventoNTimeline.touchAction('tap')
         await NTaddLocationZipCode.waitForDisplayed({timeout: 15000})
-        await NTaddLocationZipCode.waitForEnabled({ timeout: 15000 })
         await NTaddLocationDescription.waitForDisplayed({timeout: 15000})
-        await NTaddLocationDescription.waitForEnabled({ timeout: 15000 })
         await cancelButton.waitForDisplayed({timeout: 15000})
-        await cancelButton.waitForEnabled({ timeout: 15000 })
         await saveButton.waitForDisplayed({timeout: 15000})
-        await saveButton.waitForEnabled({ timeout: 15000 })
         await backButton.touchAction('tap')
 
         await actionButton.waitForDisplayed({timeout: 15000})
-        await actionButton.waitForEnabled({ timeout: 15000 })
         await actionButton.touchAction('tap')
         await NTsendEmail.waitForDisplayed({timeout: 15000})
-        await NTsendEmail.waitForEnabled({ timeout: 15000 })
         await NTsendEmail.touchAction('tap')
         await NTsendEmailCarrierText.waitForDisplayed({timeout: 15000})
-        await NTsendEmailCarrierText.waitForEnabled({ timeout: 15000 })
         await NTsendEmailCarrierText.touchAction('tap')
 
         await NTsendEmailCarrierCheckBox.waitForDisplayed({timeout: 15000})
-        await NTsendEmailCarrierCheckBox.waitForEnabled({ timeout: 15000 })
         await NTsendEmailCarrierCheckBox.touchAction('tap')
 
         await NTadditionalEmailContact.waitForDisplayed({timeout: 15000})
-        await NTadditionalEmailContact.waitForEnabled({ timeout: 15000 })
         await NTadditionalEmailContact.touchAction('tap')
         await NTadditionalEmailContactInput.waitForDisplayed({timeout: 15000})
-        await NTadditionalEmailContactInput.waitForEnabled({ timeout: 15000 })
         await NTadditionalEmailContactInput.setValue("anurag371@gmail.com")
         await this.driver.touchPerform([
             {action: "longPress", options: {x: 600, y: 850}},
@@ -886,14 +807,12 @@ class CompassPage{
             {action: "release"},
         ])
         await NTemailTemplate.waitForDisplayed({timeout: 15000})
-        await NTemailTemplate.waitForEnabled({ timeout: 15000 })
         await NTemailTemplate.touchAction('tap')
         await NTenterCustomMessage.waitForDisplayed({timeout: 15000})
-        await NTenterCustomMessage.waitForEnabled({ timeout: 15000 })
         await NTenterCustomMessage.touchAction('tap')
         await saveButton.waitForDisplayed({timeout: 15000})
-        await saveButton.waitForEnabled({ timeout: 15000 })
         await saveButton.touchAction('tap')
+        await this.driver.pause(1000)
         if (await closeButton.isDisplayed()==true){
             await closeButton.touchAction('tap')
             await this.driver.pause(1000)
@@ -902,7 +821,6 @@ class CompassPage{
         }
         await this.driver.pause(3000)
         await backButton.waitForDisplayed({ timeout: 15000 })
-        await backButton.waitForEnabled({ timeout: 15000 })
         await backButton.touchAction('tap')
         await this.driver.pause(3000)
         }
@@ -918,44 +836,34 @@ class CompassPage{
         }
     }
     await carrierNotAssignedButton.waitForDisplayed({ timeout: 8000 })
-    await carrierNotAssignedButton.waitForEnabled({ timeout: 8000 })
     await carrierNotAssignedButton.touchAction('tap')
     await carrierNotAssignedButton.waitForDisplayed({timeout: 15000})
     try{
     await alertTilesButton.waitForDisplayed({timeout: 3000})
     await mapViewButton.waitForDisplayed({timeout: 15000})
-    await mapViewButton.waitForEnabled({ timeout: 15000 })
     await mapViewButton.touchAction('tap')
     await googleMapView.waitForDisplayed({ timeout: 8000 })
-    await googleMapView.waitForEnabled({ timeout: 8000 })
 
     await alertTilesButton.waitForDisplayed({timeout: 15000})
-    await alertTilesButton.waitForEnabled({ timeout: 15000 })
     await alertTilesButton.touchAction('tap')
 
     await compassShipmentAlertCard.waitForDisplayed({timeout: 15000})
     await compassShipmentAlertCard.touchAction('tap')
     await actionCardHeader.waitForDisplayed({timeout: 15000})
     await actionButton.waitForDisplayed({timeout: 15000})
-    await actionButton.waitForEnabled({ timeout: 15000 })
     
     await actionButton.touchAction('tap')
     await CNALogANewBid.waitForDisplayed({timeout: 15000})
-    await CNALogANewBid.waitForEnabled({ timeout: 15000 })
     await CNARequestBids.waitForDisplayed({timeout: 15000})
-    await CNARequestBids.waitForEnabled({ timeout: 15000 })
     await CNATenderToCarriers.waitForDisplayed({timeout: 15000})
-    await CNATenderToCarriers.waitForEnabled({ timeout: 15000 })
     await CNAPushToRoutingGuide.waitForDisplayed({timeout: 15000})
-    await CNAPushToRoutingGuide.waitForEnabled({ timeout: 15000 })
     
     //Log a new bid
     await CNALogANewBid.touchAction('tap')
     await this.driver.pause(2000)
     await CNACarrierUSDOT.waitForDisplayed({timeout: 15000})
-    await CNACarrierUSDOT.waitForEnabled({ timeout: 15000 })
     await CNACarrierUSDOT.setValue("00000")
-    await this.driver.pause("10000")
+    await this.driver.pause(2000)
     await CNAContactFirstName.touchAction('tap')
 
     await CNAContactFirstName.setValue('Test: FirstName')
@@ -973,12 +881,10 @@ class CompassPage{
     
     if (!CNATenderModesDisplayed.isDisplayed()){
     await CNARequestBidsMode.waitForDisplayed({timeout: 15000})
-    await CNARequestBidsMode.waitForEnabled({ timeout: 15000 })
     await CNARequestBidsMode.touchAction('tap')
     }
     if (!CNAEquipmentDisplayed.isDisplayed()){
     await CNARequestBidsEquipment.waitForDisplayed({timeout: 15000})
-    await CNARequestBidsEquipment.waitForEnabled({ timeout: 15000 })
     await CNARequestBidsEquipment.touchAction('tap')
     await CNANotes.touchAction('tap')
     }
@@ -993,24 +899,20 @@ class CompassPage{
     //await cancelButton01.waitForEnabled({ timeout: 15000 })
     //await cancelButton01.touchAction('tap')
     await CNANotes.waitForDisplayed({timeout: 15000})
-    await CNANotes.waitForEnabled({ timeout: 15000 })
     await CNANotes.setValue("Testing, please ignore")
-    await this.driver.pause(3000)
+    await this.driver.pause(2000)
     await cancelButton.waitForDisplayed({timeout: 15000})
-    await cancelButton.waitForEnabled({ timeout: 15000 })
     await createButton.waitForDisplayed({timeout: 15000})
-    await createButton.waitForEnabled({ timeout: 15000 })
     await createButton.touchAction('tap')
-    await this.driver.pause(3000)
+    //await this.driver.pause(3000)
 
     //Request bid
+    await actionButton.waitForDisplayed({timeout: 15000})
     await actionButton.touchAction('tap')
     await CNARequestBids.waitForDisplayed({ timeout: 15000 })
-    await CNARequestBids.waitForEnabled({ timeout: 15000 })
     await CNARequestBids.touchAction('tap')
 
     await CNASearchCarrierByTag.waitForDisplayed({timeout: 15000})
-    await CNASearchCarrierByTag.waitForEnabled({ timeout: 15000 })
     await CNASearchCarrierByName.setValue("Anurag_Carrier001")
     await this.driver.pause(2000)
     await this.driver.touchPerform([
@@ -1023,40 +925,31 @@ class CompassPage{
         {action: "release"},
     ])
     await CNAPreviewEmailButton.waitForDisplayed({timeout: 15000})
-    await CNAPreviewEmailButton.waitForEnabled({ timeout: 15000 })
     await CNASendButton.waitForDisplayed({timeout: 15000})
-    await CNASendButton.waitForEnabled({ timeout: 15000 })
     await CNASendButton.touchAction('tap')
     
     //Tender to carrier
     await actionButton.waitForDisplayed({timeout: 15000})
-    await actionButton.waitForEnabled({ timeout: 15000 })
     await actionButton.touchAction('tap')
     await CNATenderToCarriers.waitForDisplayed({timeout: 15000})
-    await CNATenderToCarriers.waitForEnabled({ timeout: 15000 })
     await CNATenderToCarriers.touchAction('tap')
     
     await CNATenderFromContract.waitForDisplayed({timeout: 15000})
-    await CNATenderFromContract.waitForEnabled({ timeout: 15000 })
     await CNATenderCarrier.setValue("Anurag_Carrier001")
     await this.driver.pause(3000)
     await CNATenderModes.touchAction('tap')
 
     if (await CNATenderModesDisplayed.isDisplayed()==false){
         await CNATenderModesButton.waitForDisplayed({timeout: 15000})
-        await CNATenderModesButton.waitForEnabled({ timeout: 15000 })
         await CNATenderModesButton.touchAction('tap')
         await CNAEquipmentButton.touchAction('tap') // To tap on the dropdown
     }
 
     if (await CNAEquipmentDisplayed.isDisplayed()==false){
         await CNAEquipmentButton.waitForDisplayed({timeout: 15000})
-        await CNAEquipmentButton.waitForEnabled({ timeout: 15000 })
         await CNAEquipmentButton.touchAction('tap')
         await CNATenderSpecialInstructionText.touchAction('tap') // To tap on the dropdown
     }
-    
-
     await CNATenderRates.setValue("1122")
     //await CNATenderAvailableDate.touchAction('tap')
     //await cancelButton01.waitForDisplayed({timeout: 15000})
@@ -1065,41 +958,34 @@ class CompassPage{
     await CNATenderSpecialInstruction.setValue("Testing")
     const CNATenderButtonScroll= await this.CNATenderButtonScroll()
     await CNATenderButton.waitForDisplayed({timeout: 15000})
-    await CNATenderButton.waitForEnabled({ timeout: 15000 })
     await CNATenderButton.touchAction('tap')
-    await this.driver.pause(5000)
+    //await this.driver.pause(5000)
+    
     //Push to routing guide
     await actionButton.waitForDisplayed({timeout: 15000})
-    await actionButton.waitForEnabled({ timeout: 15000 })
     await actionButton.touchAction('tap')
     await CNAPushToRoutingGuide.waitForDisplayed({timeout: 15000})
-    await CNAPushToRoutingGuide.waitForEnabled({ timeout: 15000 })
     await CNAPushToRoutingGuide.touchAction('tap')
     await CNARoutingGuideButton.waitForDisplayed({timeout: 15000})
-    await CNARoutingGuideButton.waitForEnabled({ timeout: 15000 })
     await CNARoutingGuideButton.touchAction('tap')
     await CNARoutingGuideInput.setValue('ship')
     await this.driver.pause(2000)
     await CNARoutingGuideCancelButton.waitForDisplayed({timeout: 15000})
-    await CNARoutingGuideCancelButton.waitForEnabled({ timeout: 15000 })
     await CNARoutingGuideCancelButton.touchAction('tap')
     await this.driver.pause(2000)
     await CNARoutingGuideRunGuideButton.waitForDisplayed({timeout: 15000})
-    await CNARoutingGuideRunGuideButton.waitForEnabled({ timeout: 15000 })
     await CNARoutingGuideRunGuideButton.touchAction('tap')
     await this.driver.pause(2000)
-    if (await CNARoutingGuideRunGuideButton.isDisplayed()==true){
-        await cancelButton.touchAction('tap')
-    }
-    await this.driver.pause(3000)
+    //if (await cancelButton.isDisplayed()){
+        //await cancelButton.touchAction('tap')
+    //}
+    await actionButton.waitForDisplayed({timeout: 15000})
     await backButton.waitForDisplayed({ timeout: 20000 })
-    await backButton.waitForEnabled({ timeout: 20000 })
     await backButton.touchAction('tap')
     await this.driver.pause(2000)
     await backButton.waitForDisplayed({ timeout: 15000 })
-    await backButton.waitForEnabled({ timeout: 15000 })
     await backButton.touchAction('tap')
-    await this.driver.pause(3000)
+    await this.driver.pause(2000)
 }
     catch (error){
         console.log(error)
@@ -1114,7 +1000,6 @@ class CompassPage{
         }
     }
     await carrierStatusButton.waitForDisplayed({ timeout: 15000 })
-    await carrierStatusButton.waitForEnabled({ timeout: 15000 })
     await carrierStatusButton.touchAction('tap')
     await carrierStatusButton.waitForDisplayed({timeout: 15000})
     try{
@@ -1122,7 +1007,6 @@ class CompassPage{
     await mapViewButton.waitForDisplayed({timeout: 15000})
     await mapViewButton.touchAction('tap')
     await googleMapView.waitForDisplayed({ timeout: 8000 })
-    await googleMapView.waitForEnabled({ timeout: 8000 })
 
     await alertTilesButton.waitForDisplayed({timeout: 15000})
     await alertTilesButton.touchAction('tap')
@@ -1145,6 +1029,7 @@ class CompassPage{
     catch (error){
         console.log(error)
     }
+
     //Verify watched shipment
     if (await wathedShipmentButton.isDisplayed()==false){
         const scrollUp= await this.scrollUp()

@@ -39,16 +39,18 @@ class ChatComponent{
         const shipmentChatHeader= await this.shipmentChatHeader()
         const shipmentChatSendButton= await this.shipmentChatSendButton()
 
+        await this.driver.pause(2000)
         await chatButton.waitForDisplayed({ timeout: 10000 })
-        await chatButton.waitForEnabled({ timeout: 10000 })
         await chatButton.touchAction('tap')
         await this.driver.pause(2000)
         if (await shipmentChatHeader.isDisplayed()){           
             await messagesTitleText.waitForDisplayed({ timeout: 10000 })
             await chatTextInput.waitForDisplayed({ timeout: 10000 })
             await shipmentChatSendButton.waitForDisplayed({ timeout: 10000 })
+            await chatTextInput.touchAction('tap')
+            await chatTextInput.setValue("Shipper Chat message test")
+            await shipmentChatSendButton.touchAction('tap')
             await backButton.waitForDisplayed({ timeout: 10000 })
-            await backButton.waitForEnabled({ timeout: 10000 })
             await backButton.touchAction('tap')
         }
         else{
@@ -58,7 +60,6 @@ class ChatComponent{
             await chatSendButton.touchAction('tap')
             
             await backButton.waitForDisplayed({ timeout: 10000 })
-            await backButton.waitForEnabled({ timeout: 10000 })
             await backButton.touchAction('tap')
             await this.driver.pause(2000)
             if (await lbLoadIDTitleBar.isDisplayed()){
