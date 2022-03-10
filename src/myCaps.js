@@ -2,10 +2,12 @@ let myCaps = {
     capabilities: {
     platformName: "Android",
     automationName: "uiautomator2",
-    deviceName: "emulator-5554",
-    //deviceName: 'Google Pixel 3 GoogleAPI Emulator',
-    app: "/Users/anuragshipwell/Documents/app-debug.apk",
-    //appiumVersion: '1.20.2',
+    //deviceName: "emulator-5554",
+    deviceName: process.env.BITRISE_EMULATOR_SERIAL,
+    //app: "/Users/anuragshipwell/Documents/app-debug.apk",
+    app: process.env.BITRISE_APK_PATH,
+    unicodeKeyboard: "true",
+    resetKeyboard: "true",
     fullReset: "true"
     },
     //host: process.env.HOST|| "0.0.0.0"
