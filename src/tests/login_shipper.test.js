@@ -14,7 +14,7 @@ describe("Android mobileApp test", () => {
   test("==001==> TESTING APP INSTALLATION", async () => {
     expect(await app.driver.isAppInstalled("com.shipwell.debug")).toBe(true);
     await app.driver.pause(5000)
-    await app.driver.queryAppState("com.shipwell.testflight")
+    await app.driver.queryAppState("com.shipwell.debug")
     await app.driver.pause("5000")
     await app.driver.getPageSource()
 });
