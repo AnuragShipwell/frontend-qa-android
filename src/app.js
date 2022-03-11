@@ -14,10 +14,10 @@ import InboxPage from "./pages/inboxPage";
 import BookNowComponent from "./components/bookNow";
 import AssignDriverComponent from "./components/assignDriver";
 import TenderComponent from "./components/tender";
-import CreateShipmentDetailsComponent from "./components/createShipmentDetails"
-import CreateShipmentStopsComponent from "./components/createShipmentStops"
-import CreateShipmentFinanceComponent from "./components/createShipmentFinance"
-import CreateShipmentReviewComponent from "./components/createShipmentReview"
+//import CreateShipmentDetailsComponent from "./components/createShipmentDetails"
+//import CreateShipmentStopsComponent from "./components/createShipmentStops"
+//import CreateShipmentFinanceComponent from "./components/createShipmentFinance"
+//import CreateShipmentReviewComponent from "./components/createShipmentReview"
 
 class App {
   constructor() {
@@ -41,10 +41,10 @@ class App {
     this.bookNowComponent= new BookNowComponent(this.driver)
     this.assignDriverComponent= new AssignDriverComponent(this.driver)
     this.tenderComponent= new TenderComponent(this.driver)
-    this.createShipmentDetailsComponent= new CreateShipmentDetailsComponent(this.driver)
-    this.createShipmentStopsComponent= new CreateShipmentStopsComponent(this.driver)
-    this.createShipmentFinanceComponent= new CreateShipmentFinanceComponent(this.driver)
-    this.createShipmentReviewComponent= new CreateShipmentReviewComponent(this.driver)
+    //this.createShipmentDetailsComponent= new CreateShipmentDetailsComponent(this.driver)
+    //this.createShipmentStopsComponent= new CreateShipmentStopsComponent(this.driver)
+    //this.createShipmentFinanceComponent= new CreateShipmentFinanceComponent(this.driver)
+    //this.createShipmentReviewComponent= new CreateShipmentReviewComponent(this.driver)
   }
 
   async stop() {
