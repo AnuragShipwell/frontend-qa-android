@@ -27,6 +27,7 @@ async login(email, password){
     const passwordInput= await this.passwordInput()
     const signInButton= await this.signInButton()
     
+    await this.driver.pause(10000)
     await IhaveShipwellAccountButton.waitForDisplayed({timeout:5000})
     await IhaveShipwellAccountButton.touchAction("tap");
     await emailButton.waitForDisplayed({timeout:5000})

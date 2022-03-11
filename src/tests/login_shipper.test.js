@@ -13,6 +13,10 @@ describe("Android mobileApp test", () => {
 
   test("==001==> TESTING APP INSTALLATION", async () => {
     expect(await app.driver.isAppInstalled("com.shipwell.debug")).toBe(true);
+    await app.driver.pause(5000)
+    await app.driver.queryAppState("com.shipwell.testflight")
+    await app.driver.pause("5000")
+    await app.driver.getPageSource()
 });
   test("==002==> TESTING SHIPPER LOGIN", async () => {
     await app.loginPage.login('anurag@shipwell.com', 'Kmv!!1234')
@@ -36,7 +40,6 @@ describe("Android mobileApp test", () => {
   test("==008==> TESTING SHIPMENT BOARD DOC UPLOAD", async () => {
     await app.docUploadComponent.docUpload()
 });
-
   test("==009==> TESTING INBOX BOARD", async () => {
     await app.inboxPage.inbox()
 });
