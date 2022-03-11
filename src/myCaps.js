@@ -8,7 +8,10 @@ let myCaps = {
     app: process.env.BITRISE_APK_PATH,
     unicodeKeyboard: "true",
     resetKeyboard: "true",
-    fullReset: "true"
+    fullReset: "true",
+    autoLaunch: "true",
+    autoGrantPermissions: "true",
+    newCommandTimeout: "60000"
     },
     //host: process.env.HOST|| "0.0.0.0"
     host: "0.0.0.0",
