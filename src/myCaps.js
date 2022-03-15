@@ -6,7 +6,7 @@ let myCaps = {
     deviceName: process.env.BITRISE_EMULATOR_SERIAL,
     //app: "/Users/anuragshipwell/Documents/app-debug.apk",
     app: process.env.BITRISE_APK_PATH,
-    appActivity: "com.shipwell.main.MainActivity",
+    //appActivity: "com.shipwell.main.MainActivity",
     appPackage: "com.shipwell.debug",
     unicodeKeyboard: "true",
     resetKeyboard: "true",
